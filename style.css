@@ -6,10 +6,94 @@
   padding: 20px;
 }
 
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #fff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header and Navigation */
+header {
+  background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+header h1 {
+  margin: 0;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+nav ul li a:hover {
+  color: #1e90ff;
+}
+
+/* Section Styling */
+section {
+  padding: 40px 0;
+  border-bottom: 1px solid #ddd;
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Experience and Education Items */
+.exp-item, .edu-item {
+  margin-bottom: 20px;
+}
+.exp-item h3, .edu-item h3 {
+  color: #333;
+}
+
+/* Contact Section */
+#contact p {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Awards Section */
+#awards ul {
+  list-style: none;
+  padding: 0;
+}
+#awards ul li {
+  font-size: 18px;
+  padding: 5px 0;
+}
+
 /* Dark Mode */
 .dark-mode {
   background: #121212;
   color: #f4f4f4;
+}
+.dark-mode header {
+  background: #1e1e1e;
+  border-bottom: 1px solid #444;
+}
+.dark-mode h2,
+.dark-mode .exp-item h3,
+.dark-mode .edu-item h3 {
+  color: #f4f4f4;
+}
+.dark-mode section {
+  border-bottom: 1px solid #444;
+}
+.dark-mode a {
+  color: #87cefa;
 }
 
 /* Dark Mode Toggle Button */
@@ -17,22 +101,30 @@
   background: transparent;
   border: none;
   font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* Contact */
-#contact p {
-  font-size: 18px;
-  text-align: center;
-}
-
-/* Awards */
-#awards ul {
-  list-style: none;
-  padding: 0;
-}
-
-#awards ul li {
-  font-size: 18px;
   padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#dark-mode-toggle:hover {
+  background: #ddd;
+}
+.dark-mode #dark-mode-toggle {
+  background: #f4f4f4;
+  color: #121212;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+  nav ul li {
+    margin: 10px 0;
+  }
 }
