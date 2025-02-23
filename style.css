@@ -1,100 +1,98 @@
-/* 기본 리셋 */
+/* Reset & General Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.8; /* 가독성 향상 */
-  background-color: #fff;
+  line-height: 1.8;
+  background: #f9f9f9;
   color: #333;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* 레이아웃 중앙 정렬 및 최대 너비 설정 */
-main {
+/* Dark Mode */
+.dark-mode {
+  background: #121212;
+  color: #f4f4f4;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
   padding: 20px;
-  max-width: 900px; /* 너무 넓지 않도록 조절 */
-  margin: 0 auto;
 }
 
-/* 헤더 스타일 */
+/* Header */
 header {
-  background: #f4f4f4;
-  padding: 20px;
-  text-align: center;
-}
-header h1 {
-  margin-bottom: 10px;
-}
-header p {
-  margin: 5px 0;
-}
-
-/* 내비게이션 메뉴 */
-nav {
   background: #333;
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* 반응형 고려 */
-  padding: 0;
-}
-nav ul li {
-  margin: 0;
-}
-nav ul li a {
-  display: block;
-  padding: 15px 20px;
   color: #fff;
-  text-decoration: none;
-  transition: background 0.3s, transform 0.2s; /* 부드러운 애니메이션 */
-}
-nav ul li a:hover {
-  background: #ff9800; /* 더 선명한 색상 */
-  transform: scale(1.05); /* 살짝 커지는 효과 */
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* 메인 콘텐츠 */
-section {
-  margin-bottom: 40px;
-}
-section h2 {
-  font-size: 1.8em;
-  border-bottom: 2px solid #333;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-article {
-  margin-bottom: 20px;
-}
-article h3 {
-  font-size: 1.4em;
-  margin-bottom: 10px;
-}
-ul {
-  list-style-type: disc;
+header h1 {
   margin-left: 20px;
 }
 
-/* 푸터 */
-footer {
-  background: #ddd; /* 조금 더 어두운 색상으로 변경 */
-  text-align: center;
-  padding: 10px;
-  font-size: 0.9em;
+nav ul {
+  list-style: none;
+  display: flex;
 }
 
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column; /* 작은 화면에서는 세로 정렬 */
-    text-align: center;
-  }
-  nav ul li {
-    width: 100%;
-  }
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffcc00;
+}
+
+/* Dark Mode Button */
+#dark-mode-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+/* Sections */
+section {
+  padding: 40px 0;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edu-item, .exp-item {
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
 }
