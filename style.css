@@ -1,98 +1,29 @@
-/* Reset & General Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.8;
-  background: #f9f9f9;
-  color: #333;
-  transition: background 0.3s, color 0.3s;
-}
-
 /* Dark Mode */
 .dark-mode {
   background: #121212;
   color: #f4f4f4;
 }
 
-.container {
-  width: 80%;
-  margin: auto;
-  padding: 20px;
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Header */
-header {
-  background: #333;
-  color: #fff;
-  padding: 20px 0;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header h1 {
-  margin-left: 20px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
+/* Contact Section */
+#contact p {
   font-size: 18px;
-  transition: color 0.3s;
-}
-
-nav ul li a:hover {
-  color: #ffcc00;
-}
-
-/* Dark Mode Button */
-#dark-mode-toggle {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  margin-right: 20px;
-}
-
-/* Sections */
-section {
-  padding: 40px 0;
-}
-
-section h2 {
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.edu-item, .exp-item {
-  margin-bottom: 20px;
+/* Awards */
+#awards ul {
+  list-style: none;
+  padding: 0;
 }
 
-/* Footer */
-footer {
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
+#awards ul li {
+  font-size: 18px;
+  padding: 5px;
 }
