@@ -1,4 +1,27 @@
-/* Basic Container */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* CSS Variables */
+:root {
+  --primary-color: #1e90ff;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --header-bg: #f8f8f8;
+  --border-color: #dddddd;
+  --accent-color: #87cefa;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Container */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -6,94 +29,43 @@
   padding: 20px;
 }
 
-/* Global Styles */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background: #fff;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-
 /* Header and Navigation */
 header {
-  background: #f8f8f8;
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  background: linear-gradient(135deg, var(--header-bg), #e0e0e0);
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 header h1 {
   margin: 0;
+  font-size: 1.8rem;
 }
+
 nav ul {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 15px;
+  gap: 20px;
 }
+
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-color);
+  font-weight: 500;
   transition: color 0.3s;
 }
+
 nav ul li a:hover {
-  color: #1e90ff;
-}
-
-/* Section Styling */
-section {
-  padding: 40px 0;
-  border-bottom: 1px solid #ddd;
-}
-h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Experience and Education Items */
-.exp-item, .edu-item {
-  margin-bottom: 20px;
-}
-.exp-item h3, .edu-item h3 {
-  color: #333;
-}
-
-/* Contact Section */
-#contact p {
-  font-size: 18px;
-  text-align: center;
-}
-
-/* Awards Section */
-#awards ul {
-  list-style: none;
-  padding: 0;
-}
-#awards ul li {
-  font-size: 18px;
-  padding: 5px 0;
-}
-
-/* Dark Mode */
-.dark-mode {
-  background: #121212;
-  color: #f4f4f4;
-}
-.dark-mode header {
-  background: #1e1e1e;
-  border-bottom: 1px solid #444;
-}
-.dark-mode h2,
-.dark-mode .exp-item h3,
-.dark-mode .edu-item h3 {
-  color: #f4f4f4;
-}
-.dark-mode section {
-  border-bottom: 1px solid #444;
-}
-.dark-mode a {
-  color: #87cefa;
+  color: var(--primary-color);
 }
 
 /* Dark Mode Toggle Button */
@@ -106,12 +78,83 @@ h2 {
   cursor: pointer;
   transition: background 0.3s;
 }
+
 #dark-mode-toggle:hover {
   background: #ddd;
 }
+
+/* Sections */
+section {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--border-color);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Articles */
+.exp-item, .edu-item {
+  margin-bottom: 30px;
+}
+
+.exp-item h3, .edu-item h3 {
+  color: var(--text-color);
+  font-size: 1.6rem;
+}
+
+/* Lists in Awards and Contact */
+#awards ul, #contact p {
+  font-size: 1.1rem;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  --background-color: #121212;
+  --text-color: #f4f4f4;
+  --header-bg: #1e1e1e;
+  --border-color: #444444;
+}
+
+.dark-mode a {
+  color: var(--accent-color);
+}
+
 .dark-mode #dark-mode-toggle {
-  background: #f4f4f4;
-  color: #121212;
+  background: var(--text-color);
+  color: var(--background-color);
+}
+
+/* Scroll to Top Button */
+#scrollToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  font-size: 1.2rem;
+  transition: opacity 0.3s;
+}
+
+#scrollToTop:hover {
+  opacity: 0.8;
 }
 
 /* Responsive Design */
@@ -123,8 +166,6 @@ h2 {
   nav ul {
     flex-direction: column;
     text-align: center;
-  }
-  nav ul li {
-    margin: 10px 0;
+    gap: 10px;
   }
 }
