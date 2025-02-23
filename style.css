@@ -1,17 +1,26 @@
+/* Basic Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 /* Dark Mode */
 .dark-mode {
   background: #121212;
   color: #f4f4f4;
 }
 
-/* General Styling */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.8;
-  transition: background 0.3s, color 0.3s;
+/* Dark Mode Toggle Button */
+#dark-mode-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-/* Contact Section */
+/* Contact */
 #contact p {
   font-size: 18px;
   text-align: center;
