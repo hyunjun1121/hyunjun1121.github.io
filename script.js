@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const body = document.body;
+  const scrollToTopBtn = document.getElementById("scrollToTop");
 
-  // 초기 다크 모드 상태 적용 (localStorage 기준)
+  // Set initial dark mode state
   if (localStorage.getItem("dark-mode") === "enabled") {
     body.classList.add("dark-mode");
     darkModeToggle.textContent = "☀️";
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     darkModeToggle.textContent = "🌙";
   }
 
-  // 다크 모드 토글 이벤트
+  // Dark mode toggle
   darkModeToggle.addEventListener("click", function () {
     body.classList.toggle("dark-mode");
     const isDark = body.classList.contains("dark-mode");
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     darkModeToggle.textContent = isDark ? "☀️" : "🌙";
   });
 
-  // 부드러운 스크롤 효과 (네비게이션 링크 클릭 시)
+  // Smooth scrolling for nav links
   document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -32,10 +33,41 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // 인터랙티브 예시: 경험 항목 클릭 시 세부 정보 팝업
-  document.querySelectorAll('.exp-item').forEach(item => {
-    item.addEventListener('click', () => {
-      alert('클릭한 경험에 대한 세부 정보가 여기에 표시됩니다!');
+  // Intersection Observer for section animations
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.2 });
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  // Scroll-to-top button functionality
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+      scrollToTopBtn.style.display = "block";
+    } else {
+      scrollToTopBtn.style.display = "none";
+    }
+  });
+
+  scrollToTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
   });
+
+  // Log interactive experience details (future enhancements can replace this with a modal)
+  document.querySelectorAll('.exp-item').forEach(item => {
+    item.addEventListener('click', () => {
+      console.log('Experience details: More interactive content coming soon.');
+    });
+  });
+
+  console.log("Welcome to Hyunjun Kim's technical portfolio.");
 });
