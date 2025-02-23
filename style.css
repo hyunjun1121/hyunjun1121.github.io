@@ -1,9 +1,14 @@
-/* 기본 스타일 */
-body {
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
+/* 기본 리셋 */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
   color: #333;
 }
 
@@ -16,6 +21,9 @@ header {
 header h1 {
   margin-bottom: 10px;
 }
+header p {
+  margin: 5px 0;
+}
 
 /* 내비게이션 메뉴 */
 nav {
@@ -23,8 +31,6 @@ nav {
 }
 nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
 }
@@ -50,17 +56,21 @@ section {
   margin-bottom: 40px;
 }
 section h2 {
+  font-size: 1.8em;
   border-bottom: 2px solid #333;
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
-
-/* 아티클 스타일 */
 article {
   margin-bottom: 20px;
 }
 article h3 {
+  font-size: 1.4em;
   margin-bottom: 10px;
+}
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
 }
 
 /* 푸터 영역 */
