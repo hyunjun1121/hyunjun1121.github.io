@@ -1,73 +1,67 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const darkModeToggle = document.getElementById("dark-mode-toggle");
-  const body = document.body;
-  const scrollToTopBtn = document.getElementById("scrollToTop");
-
-  // Set initial dark mode state
-  if (localStorage.getItem("dark-mode") === "enabled") {
-    body.classList.add("dark-mode");
-    darkModeToggle.textContent = "☀️";
-  } else {
-    darkModeToggle.textContent = "🌙";
-  }
-
-  // Dark mode toggle
-  darkModeToggle.addEventListener("click", function () {
-    body.classList.toggle("dark-mode");
-    const isDark = body.classList.contains("dark-mode");
-    localStorage.setItem("dark-mode", isDark ? "enabled" : "disabled");
-    darkModeToggle.textContent = isDark ? "☀️" : "🌙";
-  });
-
-  // Smooth scrolling for nav links
-  document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const target = document.querySelector(targetId);
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
+// 언어 전환 기능 수정
+document.addEventListener('DOMContentLoaded', function() {
+  const languageBtns = document.querySelectorAll('.language-btn');
+  
+  languageBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const lang = this.getAttribute('data-lang');
+      document.documentElement.lang = lang;
+      
+      // 버튼 활성화 상태 변경
+      languageBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
     });
   });
-
-  // Intersection Observer for section animations
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver(entries => {
+  
+  // 애니메이션 처리
+  setTimeout(() => {
+    document.querySelectorAll('.expertise-tag').forEach((tag, index) => {
+      setTimeout(() => {
+        tag.classList.add('animated');
+      }, 100 * index);
+    });
+    
+    setTimeout(() => {
+      document.querySelector('.intro-quote').classList.add('animated');
+    }, 600);
+  }, 500);
+  
+  // 스크롤 애니메이션
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
+        entry.target.classList.add('animated');
+        
+        // 스킬 태그 애니메이션
+        if (entry.target.classList.contains('skills-category')) {
+          const skillTags = entry.target.querySelectorAll('.skill-tag');
+          skillTags.forEach((tag, index) => {
+            setTimeout(() => {
+              tag.classList.add('animated');
+            }, 50 * index);
+          });
+        }
       }
     });
   }, { threshold: 0.2 });
-  sections.forEach(section => {
-    observer.observe(section);
+  
+  // 타임라인 노드 관찰
+  document.querySelectorAll('.timeline-node').forEach(item => {
+    observer.observe(item);
   });
-
-  // Scroll-to-top button functionality
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 300) {
-      scrollToTopBtn.style.display = "block";
-    } else {
-      scrollToTopBtn.style.display = "none";
-    }
+  
+  // 논문 카드 관찰
+  document.querySelectorAll('.paper-card').forEach(item => {
+    observer.observe(item);
   });
-
-  scrollToTopBtn.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+  
+  // 수상 카드 관찰
+  document.querySelectorAll('.award-card').forEach(item => {
+    observer.observe(item);
   });
-
-  // Log interactive experience details (future enhancements can replace this with a modal)
-  document.querySelectorAll('.exp-item').forEach(item => {
-    item.addEventListener('click', () => {
-      console.log('Experience details: More interactive content coming soon.');
-    });
+  
+  // 스킬 카테고리 관찰
+  document.querySelectorAll('.skills-category').forEach(item => {
+    observer.observe(item);
   });
-
-  console.log("Welcome to Hyunjun Kim's technical portfolio.");
 });
