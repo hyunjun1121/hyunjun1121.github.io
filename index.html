@@ -5,10 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hyunjun Kim | AI Researcher</title>
   
-  <!-- Professional fonts import -->
+  <!-- SEO 최적화 -->
+  <meta name="description" content="Hyunjun Kim - AI Researcher specializing in LLM, AI Security and RAG Systems from KAIST Computer Science">
+  <meta name="keywords" content="Hyunjun Kim, KAIST, AI Research, LLM, Jailbreak, RAG, Computer Science, AI Security">
+  <meta name="author" content="Hyunjun Kim">
+  <meta property="og:title" content="Hyunjun Kim - AI Researcher">
+  <meta property="og:description" content="AI Researcher specializing in LLM, AI Security and RAG Systems from KAIST Computer Science">
+  <meta property="og:image" content="https://i.postimg.cc/pTWp05QJ/image.jpg">
+  <meta property="og:url" content="https://your-website-url.com">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- 구조화된 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Person",
+    "name": "Hyunjun Kim",
+    "url": "https://your-website-url.com",
+    "image": "https://i.postimg.cc/pTWp05QJ/image.jpg",
+    "jobTitle": "AI Researcher",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "KAIST (Korea Advanced Institute of Science and Technology)"
+    },
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "KAIST"
+    },
+    "email": "hyunjun1121@kaist.ac.kr",
+    "telephone": "+82 010-9417-1845",
+    "sameAs": [
+      "https://www.linkedin.com/in/hyunjun1121"
+    ]
+  }
+  </script>
+  
+  <!-- 폰트 임포트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Lato:wght@300;400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- 스크립트 라이브러리 -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <style>
     :root {
@@ -24,6 +63,33 @@
       --border-light: #e2e8f0;
       --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
       --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* 다크 모드 변수 */
+    [data-theme="dark"] {
+      --main-color: #3b82f6;
+      --secondary-color: #60a5fa;
+      --accent-color: #38bdf8;
+      --text-dark: #e2e8f0;
+      --text-medium: #cbd5e1;
+      --text-light: #1e293b;
+      --bg-white: #0f172a;
+      --bg-light: #1e293b;
+      --bg-medium: #334155;
+      --border-light: #334155;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    
+    [data-theme="dark"] .header {
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+    }
+    
+    [data-theme="dark"] .paper-card,
+    [data-theme="dark"] .award-card,
+    [data-theme="dark"] .node-content,
+    [data-theme="dark"] .skill-tag {
+      background-color: var(--bg-light);
     }
     
     * {
@@ -58,7 +124,143 @@
       padding: 0 20px;
     }
     
-    /* Language switcher */
+    /* 스크롤 진행 표시기 */
+    .scroll-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    
+    .scroll-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+    
+    [data-theme="dark"] .scroll-progress-container {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* 섹션 네비게이션 */
+    .section-nav {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .section-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .section-nav li {
+      width: 12px;
+      height: 12px;
+      position: relative;
+    }
+    
+    .section-nav a {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--bg-medium);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .section-nav a:hover, .section-nav a.active {
+      background-color: var(--main-color);
+      transform: scale(1.2);
+    }
+    
+    .section-nav a::after {
+      content: attr(title);
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--main-color);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .section-nav a:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* 테마 전환 버튼 */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    .sun-icon, .moon-icon {
+      width: 24px;
+      height: 24px;
+      transition: opacity 0.3s ease, transform 0.5s ease;
+    }
+    
+    .sun-icon {
+      opacity: 0;
+      position: absolute;
+      transform: rotate(180deg);
+    }
+    
+    .moon-icon {
+      opacity: 1;
+    }
+    
+    [data-theme="dark"] .sun-icon {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    
+    [data-theme="dark"] .moon-icon {
+      opacity: 0;
+      transform: rotate(180deg);
+    }
+    
+    /* 언어 전환 버튼 */
     .language-switcher {
       position: absolute;
       top: 20px;
@@ -89,7 +291,7 @@
       font-weight: bold;
     }
     
-    /* Header styles */
+    /* 헤더 스타일 */
     .header {
       background: linear-gradient(135deg, var(--main-color), var(--secondary-color));
       color: var(--text-light);
@@ -148,7 +350,25 @@
       text-decoration: none;
     }
     
-    /* Intro section */
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .contact-btn:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-3px);
+      text-decoration: none;
+    }
+    
+    /* 인트로 섹션 */
     .intro-section {
       display: flex;
       align-items: center;
@@ -174,7 +394,6 @@
       overflow: hidden;
       position: relative;
       box-shadow: var(--shadow-md);
-      /* Replace with your actual image */
       background-image: url('https://i.postimg.cc/pTWp05QJ/image.jpg');
       background-size: cover;
       background-position: center;
@@ -217,7 +436,7 @@
       color: var(--text-medium);
     }
     
-    /* Section styles */
+    /* 섹션 스타일 */
     .section {
       padding: 50px 0;
       position: relative;
@@ -253,7 +472,33 @@
       background-color: var(--secondary-color);
     }
     
-    /* Research journey timeline */
+    /* 논문 필터링 */
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0 30px;
+    }
+    
+    .filter-btn {
+      background-color: var(--bg-light);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: var(--text-medium);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--main-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* 연구 여정 타임라인 */
     .timeline-container {
       position: relative;
       margin: 40px 0;
@@ -357,7 +602,7 @@
       font-weight: bold;
     }
     
-    /* Publications map */
+    /* 연구 성과 맵 */
     .papers-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -381,6 +626,10 @@
     .paper-card:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-md);
+    }
+    
+    .paper-card.hidden {
+      display: none;
     }
     
     .paper-icon {
@@ -432,7 +681,7 @@
       border-top: 3px solid var(--secondary-color);
     }
     
-    /* Awards and achievements gallery */
+    /* 수상 및 성취 갤러리 */
     .awards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -492,7 +741,7 @@
       border-left: 3px solid #ffd700;
     }
     
-    /* Skills section */
+    /* 스킬 섹션 */
     .skills-container {
       margin-top: 40px;
       text-align: center;
@@ -553,7 +802,78 @@
       color: var(--main-color);
     }
     
-    /* Footer */
+    /* 연락처 폼 */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .form-group label {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+    
+    .form-group input, .form-group textarea {
+      padding: 12px;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--main-color);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+    
+    .submit-btn {
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 24px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      align-self: flex-start;
+      margin-top: 10px;
+    }
+    
+    .submit-btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    .form-success {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: rgba(13, 148, 136, 0.1);
+      border-left: 4px solid rgb(13, 148, 136);
+      color: rgb(13, 148, 136);
+      border-radius: 4px;
+      display: none;
+    }
+    
+    [data-theme="dark"] .form-success {
+      background-color: rgba(20, 184, 166, 0.1);
+      border-left: 4px solid rgb(20, 184, 166);
+      color: rgb(20, 184, 166);
+    }
+    
+    /* 푸터 */
     .footer {
       text-align: center;
       padding: 40px 0 20px;
@@ -568,13 +888,137 @@
       color: var(--text-medium);
     }
     
-    /* Animation classes */
+    /* 애니메이션 클래스 */
     .animated {
       opacity: 1 !important;
       transform: translateY(0) rotate(0) scale(1) !important;
     }
     
-    /* Responsive design */
+    /* 언어별 콘텐츠 관리 */
+    html[lang="en"] .content-ko {
+      display: none !important;
+    }
+    
+    html[lang="ko"] .content-en {
+      display: none !important;
+    }
+    
+    .content-ko {
+      display: none;
+    }
+    
+    html[lang="ko"] .content-ko {
+      display: block;
+    }
+    
+    html[lang="ko"] span.content-ko, 
+    html[lang="ko"] div.content-ko {
+      display: inline-block;
+    }
+    
+    /* 인쇄 스타일시트 */
+    @media print {
+      /* 인쇄 시 숨길 요소들 */
+      #particles-js, .theme-toggle, .scroll-progress-container,
+      .section-nav, .language-switcher, .filter-buttons, .contact-section {
+        display: none !important;
+      }
+      
+      /* 배경색 및 글자색 최적화 */
+      body, .section, .header, .footer {
+        background: white !important;
+        color: black !important;
+        margin: 0 !important;
+        padding: 10px 0 !important;
+      }
+      
+      .header {
+        padding-top: 30px !important;
+      }
+      
+      .section {
+        page-break-inside: avoid;
+      }
+      
+      /* 다크 모드에서도 인쇄 가능하도록 */
+      [data-theme="dark"] .node-title,
+      [data-theme="dark"] .paper-title,
+      [data-theme="dark"] .award-title,
+      [data-theme="dark"] .category-title,
+      [data-theme="dark"] .section-title h2,
+      [data-theme="dark"] .paper-meta,
+      [data-theme="dark"] .paper-author,
+      [data-theme="dark"] .award-detail,
+      [data-theme="dark"] .node-details,
+      [data-theme="dark"] .node-subtitle,
+      [data-theme="dark"] .skill-tag {
+        color: black !important;
+      }
+      
+      /* 링크 스타일 */
+      a, a:visited {
+        color: black !important;
+        text-decoration: none !important;
+      }
+      
+      /* 명함 스타일로 첫 페이지 최적화 */
+      .name-title h1 {
+        font-size: 24pt !important;
+        color: black !important;
+      }
+      
+      .subtitle {
+        font-size: 14pt !important;
+        color: #444 !important;
+      }
+      
+      .contact-info {
+        margin: 20px 0 !important;
+        justify-content: space-around !important;
+      }
+      
+      .contact-info a {
+        background: none !important;
+        padding: 5px !important;
+        margin: 0 15px !important;
+        color: #333 !important;
+      }
+      
+      /* 카드 스타일 최적화 */
+      .paper-card, .award-card, .node-content, .skill-tag {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        break-inside: avoid;
+      }
+      
+      /* 그리드 최적화 */
+      .papers-grid, .awards-grid {
+        display: block !important;
+      }
+      
+      .paper-card, .award-card {
+        margin-bottom: 20px !important;
+        page-break-inside: avoid;
+      }
+      
+      /* 두 번째 페이지부터 헤더 추가 */
+      @page {
+        @top-center {
+          content: "Hyunjun Kim - Resume";
+          font-family: 'Open Sans', sans-serif;
+          font-size: 10pt;
+        }
+      }
+      
+      /* 첫 페이지는 헤더 제외 */
+      @page :first {
+        @top-center {
+          content: "";
+        }
+      }
+    }
+    
+    /* 반응형 디자인 */
     @media (max-width: 992px) {
       .papers-grid, .awards-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -623,6 +1067,10 @@
         justify-content: center;
         margin-top: 10px;
       }
+      
+      .section-nav {
+        display: none;
+      }
     }
     
     @media (max-width: 576px) {
@@ -653,33 +1101,32 @@
         margin-left: 0;
       }
     }
-    
-    /* Language content management */
-    html[lang="en"] .content-ko {
-      display: none !important;
-    }
-    
-    html[lang="ko"] .content-en {
-      display: none !important;
-    }
-    
-    .content-ko {
-      display: none;
-    }
-    
-    html[lang="ko"] .content-ko {
-      display: block;
-    }
-    
-    html[lang="ko"] span.content-ko, 
-    html[lang="ko"] div.content-ko {
-      display: inline-block;
-    }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- 스크롤 진행 표시기 -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+  
+  <!-- 섹션 네비게이션 -->
+  <nav class="section-nav" id="sectionNav">
+    <ul>
+      <li><a href="#education" title="Education" data-section="education"></a></li>
+      <li><a href="#research" title="Research Experience" data-section="research"></a></li>
+      <li><a href="#publications" title="Publications" data-section="publications"></a></li>
+      <li><a href="#awards" title="Awards" data-section="awards"></a></li>
+      <li><a href="#additional" title="Additional Experience" data-section="additional"></a></li>
+      <li><a href="#skills" title="Skills" data-section="skills"></a></li>
+      <li><a href="#languages" title="Languages" data-section="languages"></a></li>
+      <li><a href="#contact" title="Contact" data-section="contact"></a></li>
+    </ul>
+  </nav>
+  
+  <!-- 헤더 -->
   <header class="header">
+    <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
+    
     <div class="language-switcher">
       <button class="language-btn active" data-lang="en">English</button>
       <button class="language-btn" data-lang="ko">한국어</button>
@@ -710,11 +1157,19 @@
           </svg>
           +82 010-9417-1845
         </a>
+        <a href="hyunjun_kim_cv.pdf" class="contact-btn" download>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+          </svg>
+          <span class="content-en">Download CV</span>
+          <span class="content-ko">이력서 다운로드</span>
+        </a>
       </div>
     </div>
   </header>
   
-  <!-- Intro Section -->
+  <!-- 인트로 섹션 -->
   <section class="intro-section">
     <div class="profile-container">
       <div class="profile-photo"></div>
@@ -734,8 +1189,8 @@
     </div>
   </section>
   
-  <!-- Education Section -->
-  <section class="section">
+  <!-- 교육 섹션 -->
+  <section class="section" id="education">
     <div class="container">
       <div class="section-title">
         <h2 class="content-en">Education</h2>
@@ -773,8 +1228,8 @@
     </div>
   </section>
   
-  <!-- Research Experience Timeline -->
-  <section class="section">
+  <!-- 연구 경험 섹션 -->
+  <section class="section" id="research">
     <div class="container">
       <div class="section-title">
         <h2 class="content-en">Research Experience</h2>
@@ -854,16 +1309,25 @@
     </div>
   </section>
   
-  <!-- Publications Section -->
-  <section class="section">
+  <!-- 논문 섹션 -->
+  <section class="section" id="publications">
     <div class="container">
       <div class="section-title">
         <h2 class="content-en">Publications</h2>
         <h2 class="content-ko">논문</h2>
       </div>
+      
       <div class="section-note" style="text-align:center; margin-top:20px; font-size:0.9rem; color:var(--text-medium);">
         <p class="content-en">* Equal contribution | † Corresponding author</p>
         <p class="content-ko">* 공동 주저자 | † 교신저자</p>
+      </div>
+      
+      <!-- 논문 필터링 버튼 -->
+      <div class="filter-buttons" style="text-align: center; margin: 20px 0 30px;">
+        <button class="filter-btn active" data-filter="all">All Papers</button>
+        <button class="filter-btn" data-filter="llm">LLM</button>
+        <button class="filter-btn" data-filter="security">Security</button>
+        <button class="filter-btn" data-filter="rag">RAG</button>
       </div>
       
       <h3 style="text-align:center; margin-top:30px; font-size:1.3rem; color:var(--main-color);" class="content-en">Published</h3>
@@ -871,7 +1335,7 @@
       
       <div class="papers-grid">
         <!-- Published Paper 1 -->
-        <div class="paper-card featured">
+        <div class="paper-card featured" data-category="rag financial">
           <div class="paper-icon">📄</div>
           <h3 class="paper-title">
             Optimizing Retrieval Strategies for Financial Question Answering Documents in Retrieval-Augmented Generation Systems
@@ -886,7 +1350,7 @@
         </div>
         
         <!-- Published Paper 2 -->
-        <div class="paper-card">
+        <div class="paper-card" data-category="llm evaluation">
           <div class="paper-icon">📄</div>
           <h3 class="paper-title">
             Humanity's Last Exam
@@ -905,7 +1369,7 @@
       
       <div class="papers-grid">
         <!-- Under Review Paper 1 -->
-        <div class="paper-card featured">
+        <div class="paper-card featured" data-category="llm security jailbreak">
           <div class="paper-icon">📄</div>
           <h3 class="paper-title">
             One-Shot is Enough: Consolidating Multi-Turn Attacks into Efficient Single-Turn Prompts for LLMs
@@ -920,7 +1384,7 @@
         </div>
         
         <!-- Under Review Paper 2 -->
-        <div class="paper-card">
+        <div class="paper-card" data-category="llm security jailbreak">
           <div class="paper-icon">📄</div>
           <h3 class="paper-title">
             Breaking the Guardrails with Personality: Character-Driven LLMs Influencing Jailbreak Success
@@ -940,7 +1404,7 @@
       
       <div class="papers-grid">
         <!-- In Preparation Paper -->
-        <div class="paper-card">
+        <div class="paper-card" data-category="llm software-engineering">
           <div class="paper-icon">📄</div>
           <h3 class="paper-title">
             Experimental Analysis of Effective Prompting Strategy on Software Engineering Tasks with Large Language Models
@@ -957,8 +1421,8 @@
     </div>
   </section>
   
-  <!-- Awards & Honors Section -->
-  <section class="section">
+  <!-- 수상 및 영예 섹션 -->
+  <section class="section" id="awards">
     <div class="container">
       <div class="section-title">
         <h2 class="content-en">Awards & Honors</h2>
@@ -1045,8 +1509,8 @@
     </div>
   </section>
   
-  <!-- Additional Experience Section -->
-  <section class="section">
+  <!-- 추가 경험 섹션 -->
+  <section class="section" id="additional">
     <div class="container">
       <div class="section-title">
         <h2 class="content-en">Additional Experience</h2>
@@ -1104,12 +1568,17 @@
     </div>
   </section>
   
-  <!-- Skills Section -->
-  <section class="section">
+  <!-- 스킬 섹션 -->
+  <section class="section" id="skills">
     <div class="container">
       <div class="section-title">
         <h2 class="content-en">Skills</h2>
         <h2 class="content-ko">기술</h2>
+      </div>
+      
+      <!-- 레이더 차트 추가 -->
+      <div style="max-width: 700px; margin: 30px auto 50px;">
+        <canvas id="skillsRadarChart"></canvas>
       </div>
       
       <div class="skills-container">
@@ -1192,8 +1661,8 @@
     </div>
   </section>
   
-  <!-- Languages Section -->
-  <section class="section">
+  <!-- 언어 섹션 -->
+  <section class="section" id="languages">
     <div class="container">
       <div class="section-title">
         <h2 class="content-en">Languages</h2>
@@ -1214,7 +1683,55 @@
     </div>
   </section>
   
-  <!-- Footer -->
+  <!-- 연락처 섹션 -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2 class="content-en">Contact Me</h2>
+        <h2 class="content-ko">문의하기</h2>
+      </div>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <form class="contact-form" id="contactForm" onsubmit="return false;">
+          <div class="form-group">
+            <label for="name" class="content-en">Name</label>
+            <label for="name" class="content-ko">이름</label>
+            <input type="text" id="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="content-en">Email</label>
+            <label for="email" class="content-ko">이메일</label>
+            <input type="email" id="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject" class="content-en">Subject</label>
+            <label for="subject" class="content-ko">제목</label>
+            <input type="text" id="subject" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="content-en">Message</label>
+            <label for="message" class="content-ko">메시지</label>
+            <textarea id="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span class="content-en">Send Message</span>
+            <span class="content-ko">메시지 보내기</span>
+          </button>
+          
+          <div class="form-success" id="formSuccess">
+            <p class="content-en">Thank you for your message! I'll get back to you soon.</p>
+            <p class="content-ko">메시지를 보내주셔서 감사합니다! 곧 답변 드리겠습니다.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 푸터 -->
   <footer class="footer">
     <div class="container">
       <p>© 2025 Hyunjun Kim. All Rights Reserved.</p>
@@ -1222,8 +1739,18 @@
     </div>
   </footer>
   
+  <!-- 테마 전환 버튼 -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+    </svg>
+    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" />
+    </svg>
+  </button>
+  
   <script>
-    // Language switching functionality
+    // 언어 전환 기능
     document.addEventListener('DOMContentLoaded', function() {
       const languageBtns = document.querySelectorAll('.language-btn');
       
@@ -1232,34 +1759,121 @@
           const lang = this.getAttribute('data-lang');
           document.documentElement.lang = lang;
           
-          // Update button active state
+          // 버튼 활성화 상태 변경
           languageBtns.forEach(b => b.classList.remove('active'));
           this.classList.add('active');
         });
       });
       
-      // Animation handling
+      // 입자 효과 초기화
+      if(typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+          "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#ffffff" },
+            "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
+            "opacity": { "value": 0.3, "random": false },
+            "size": { "value": 3, "random": true },
+            "line_linked": {
+              "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.2, "width": 1
+            },
+            "move": {
+              "enable": true, "speed": 1, "direction": "none", "random": false,
+              "straight": false, "out_mode": "out", "bounce": false
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": { "enable": true, "mode": "grab" },
+              "onclick": { "enable": false, "mode": "push" },
+              "resize": true
+            },
+            "modes": {
+              "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }
+            }
+          },
+          "retina_detect": true
+        });
+      }
+      
+      // 테마 전환 기능
+      const themeToggle = document.getElementById('theme-toggle');
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      // 저장된 테마 불러오기
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+      } else if (prefersDarkScheme.matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      
+      themeToggle.addEventListener('click', function() {
+        let theme = 'light';
+        
+        if (document.documentElement.getAttribute('data-theme') !== 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          theme = 'dark';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+        
+        localStorage.setItem('theme', theme);
+      });
+      
+      // 스크롤 진행 표시기
+      const scrollProgressBar = document.getElementById('scrollProgressBar');
+      
+      const updateScrollProgress = () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        scrollProgressBar.style.width = scrollPercentage + '%';
+      };
+      
+      window.addEventListener('scroll', updateScrollProgress);
+      updateScrollProgress(); // 초기화
+      
+      // 섹션 네비게이션
+      const sections = document.querySelectorAll('.section');
+      const navLinks = document.querySelectorAll('.section-nav a');
+      
+      const updateActiveSection = () => {
+        const scrollPosition = window.scrollY + window.innerHeight / 3;
+        
+        sections.forEach((section, index) => {
+          if (index < navLinks.length) {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+              navLinks.forEach(link => link.classList.remove('active'));
+              navLinks[index].classList.add('active');
+            }
+          }
+        });
+      };
+      
+      window.addEventListener('scroll', updateActiveSection);
+      updateActiveSection(); // 초기화
+      
+      // 애니메이션 처리
       setTimeout(() => {
         document.querySelectorAll('.expertise-tag').forEach((tag, index) => {
           setTimeout(() => {
             tag.classList.add('animated');
           }, 100 * index);
         });
-        
-        setTimeout(() => {
-          if (document.querySelector('.intro-quote')) {
-            document.querySelector('.intro-quote').classList.add('animated');
-          }
-        }, 600);
       }, 500);
       
-      // Scroll animations
+      // 스크롤 애니메이션
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animated');
             
-            // Skill tags animation
+            // 스킬 태그 애니메이션
             if (entry.target.classList.contains('skills-category')) {
               const skillTags = entry.target.querySelectorAll('.skill-tag');
               skillTags.forEach((tag, index) => {
@@ -1272,24 +1886,199 @@
         });
       }, { threshold: 0.2 });
       
-      // Observe timeline nodes
+      // 타임라인 노드 관찰
       document.querySelectorAll('.timeline-node').forEach(item => {
         observer.observe(item);
       });
       
-      // Observe paper cards
+      // 논문 카드 관찰
       document.querySelectorAll('.paper-card').forEach(item => {
         observer.observe(item);
       });
       
-      // Observe award cards
+      // 수상 카드 관찰
       document.querySelectorAll('.award-card').forEach(item => {
         observer.observe(item);
       });
       
-      // Observe skill categories
+      // 스킬 카테고리 관찰
       document.querySelectorAll('.skills-category').forEach(item => {
         observer.observe(item);
+      });
+      
+      // 다크 모드 감지 함수
+      const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      
+      // 스킬 레이더 차트
+      if (typeof Chart !== 'undefined') {
+        const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+        
+        // 차트 색상 설정
+        const getChartColors = () => {
+          return {
+            borderColor: isDarkMode() ? 'rgba(59, 130, 246, 0.8)' : 'rgba(30, 58, 138, 0.7)',
+            backgroundColor: isDarkMode() ? 'rgba(59, 130, 246, 0.2)' : 'rgba(30, 58, 138, 0.1)',
+            pointBackgroundColor: isDarkMode() ? '#60a5fa' : '#3b82f6',
+            textColor: isDarkMode() ? '#e2e8f0' : '#1e293b'
+          };
+        };
+        
+        let chartColors = getChartColors();
+        
+        // 스킬 데이터
+        const skillsData = {
+          labels: [
+            'AI Research', 
+            'LLM Security', 
+            'RAG Systems',
+            'Programming',
+            'Technical Writing',
+            'DevOps',
+            'Research Design'
+          ],
+          datasets: [{
+            label: 'Skill Level',
+            data: [90, 95, 85, 80, 85, 75, 90],
+            borderWidth: 2,
+            borderColor: chartColors.borderColor,
+            backgroundColor: chartColors.backgroundColor,
+            pointBackgroundColor: chartColors.pointBackgroundColor,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: chartColors.borderColor
+          }]
+        };
+        
+        // 차트 생성
+        const skillsChart = new Chart(ctx, {
+          type: 'radar',
+          data: skillsData,
+          options: {
+            scales: {
+              r: {
+                angleLines: {
+                  color: isDarkMode() ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                },
+                grid: {
+                  color: isDarkMode() ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                },
+                pointLabels: {
+                  color: chartColors.textColor,
+                  font: {
+                    size: 14
+                  }
+                },
+                ticks: {
+                  backdropColor: 'transparent',
+                  color: chartColors.textColor
+                },
+                suggestedMin: 0,
+                suggestedMax: 100
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: true
+          }
+        });
+        
+        // 테마 변경 시 차트 업데이트
+        themeToggle.addEventListener('click', function() {
+          setTimeout(() => {
+            chartColors = getChartColors();
+            
+            // 차트 색상 업데이트
+            skillsChart.data.datasets[0].borderColor = chartColors.borderColor;
+            skillsChart.data.datasets[0].backgroundColor = chartColors.backgroundColor;
+            skillsChart.data.datasets[0].pointBackgroundColor = chartColors.pointBackgroundColor;
+            skillsChart.data.datasets[0].pointHoverBorderColor = chartColors.borderColor;
+            
+            // 스케일 색상 업데이트
+            skillsChart.options.scales.r.angleLines.color = isDarkMode() ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+            skillsChart.options.scales.r.grid.color = isDarkMode() ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+            skillsChart.options.scales.r.pointLabels.color = chartColors.textColor;
+            skillsChart.options.scales.r.ticks.color = chartColors.textColor;
+            
+            skillsChart.update();
+          }, 100);
+        });
+      }
+      
+      // 논문 필터링 기능
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const paperCards = document.querySelectorAll('.paper-card');
+      
+      // 각 논문 카드에 적절한 category 데이터 속성 추가
+      paperCards.forEach(card => {
+        if (!card.hasAttribute('data-category')) {
+          const keywords = card.querySelectorAll('.paper-keyword');
+          let categories = [];
+          
+          keywords.forEach(keyword => {
+            categories.push(keyword.textContent.toLowerCase());
+          });
+          
+          card.setAttribute('data-category', categories.join(' '));
+        }
+      });
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // 버튼 활성화 상태 업데이트
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          const filter = this.getAttribute('data-filter');
+          
+          // 필터링 적용
+          paperCards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+              card.classList.remove('hidden');
+              
+              // 애니메이션 효과
+              setTimeout(() => {
+                card.style.transform = 'translateY(0)';
+                card.style.opacity = '1';
+              }, 50);
+            } else {
+              card.classList.add('hidden');
+              card.style.transform = 'translateY(20px)';
+              card.style.opacity = '0';
+            }
+          });
+        });
+      });
+      
+      // 간단한 폼 제출 처리
+      const contactForm = document.getElementById('contactForm');
+      const formSuccess = document.getElementById('formSuccess');
+      
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 여기서 실제 폼 제출 로직을 구현하세요 (예: fetch API로 서버에 전송)
+        // 예시: 폼 입력값 가져오기
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        console.log({name, email, subject, message});
+        
+        // 성공 메시지 표시 (실제 구현에서는 서버 응답 후 표시)
+        formSuccess.style.display = 'block';
+        
+        // 폼 초기화
+        contactForm.reset();
+        
+        // 일정 시간 후 성공 메시지 숨기기
+        setTimeout(() => {
+          formSuccess.style.display = 'none';
+        }, 5000);
       });
     });
   </script>
