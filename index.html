@@ -35,7 +35,9 @@
     "email": "hyunjun1121@kaist.ac.kr",
     "telephone": "+82 010-9417-1845",
     "sameAs": [
-      "https://www.linkedin.com/in/hyunjun1121"
+      "https://www.linkedin.com/in/hyunjun1121",
+      "https://scholar.google.com/citations?user=KjwPYpoAAAAJ&hl=ko",
+      "https://github.com/hyunjun1121"
     ]
   }
   </script>
@@ -48,6 +50,10 @@
   <!-- 스크립트 라이브러리 -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   
   <style>
     :root {
@@ -888,6 +894,82 @@
       color: var(--text-medium);
     }
     
+    /* 소셜 미디어 링크 */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--bg-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background-color: var(--main-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* 추가 애니메이션 효과 */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .float-animation {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+    
+    .shimmer-animation {
+      background: linear-gradient(90deg, 
+        var(--bg-light) 0%, 
+        var(--bg-white) 50%, 
+        var(--bg-light) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite;
+    }
+    
     /* 애니메이션 클래스 */
     .animated {
       opacity: 1 !important;
@@ -914,6 +996,58 @@
     html[lang="ko"] span.content-ko, 
     html[lang="ko"] div.content-ko {
       display: inline-block;
+    }
+    
+    /* 페이퍼 링크 스타일 */
+    .paper-links {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .paper-link {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--accent-color);
+      background-color: var(--bg-light);
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .paper-link:hover {
+      background-color: var(--accent-color);
+      color: white;
+      text-decoration: none;
+    }
+    
+    .paper-link svg {
+      margin-right: 4px;
+    }
+    
+    /* 추가 애니메이션 효과 */
+    .rotate-animation {
+      animation: rotate 10s linear infinite;
+    }
+    
+    .slide-in-animation {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    /* 기타 인터랙티브 효과 */
+    .hover-lift {
+      transition: transform 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* 3D 효과 */
+    .tilt-effect {
+      transform-style: preserve-3d;
+      perspective: 1000px;
     }
     
     /* 인쇄 스타일시트 */
@@ -1134,36 +1268,36 @@
     
     <div class="container name-container">
       <div class="name-title">
-        <h1>Hyunjun Kim</h1>
-        <p class="subtitle content-en">AI Researcher | KAIST Computer Science</p>
-        <p class="subtitle content-ko">AI 연구원 | KAIST 전산학부</p>
+        <h1 class="slide-in-animation">Hyunjun Kim</h1>
+        <p class="subtitle content-en slide-in-animation">AI Researcher | KAIST Computer Science</p>
+        <p class="subtitle content-ko slide-in-animation">AI 연구원 | KAIST 전산학부</p>
       </div>
       <div class="contact-info">
-        <a href="mailto:hyunjun1121@kaist.ac.kr">
+        <a href="mailto:hyunjun1121@kaist.ac.kr" class="hover-lift">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
           </svg>
           hyunjun1121@kaist.ac.kr
         </a>
-        <a href="https://www.linkedin.com/in/hyunjun1121" target="_blank">
+        <a href="https://www.linkedin.com/in/hyunjun1121" target="_blank" class="hover-lift">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
             <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
           </svg>
           LinkedIn
         </a>
-        <a href="tel:+82-010-9417-1845">
+        <a href="tel:+82-010-9417-1845" class="hover-lift">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
             <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
           </svg>
           +82 010-9417-1845
         </a>
-        <a href="hyunjun_kim_cv.pdf" class="contact-btn" download>
+        <a href="https://drive.google.com/file/d/1upER7840dZ0WbH1K6Tt5rpuV8kJ1q4xE/view?usp=sharing" class="contact-btn hover-lift" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
             <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
           </svg>
-          <span class="content-en">Download CV</span>
-          <span class="content-ko">이력서 다운로드</span>
+          <span class="content-en">View CV</span>
+          <span class="content-ko">이력서 보기</span>
         </a>
       </div>
     </div>
@@ -1172,7 +1306,7 @@
   <!-- 인트로 섹션 -->
   <section class="intro-section">
     <div class="profile-container">
-      <div class="profile-photo"></div>
+      <div class="profile-photo float-animation"></div>
       <div class="expertise-tags">
         <span class="expertise-tag content-en">KAIST Computer Science</span>
         <span class="expertise-tag content-en">LLM Research</span>
@@ -1347,6 +1481,14 @@
             <span class="paper-keyword">Financial QA</span>
             <span class="paper-keyword">LLM</span>
           </div>
+          <div class="paper-links">
+            <a href="https://arxiv.org/abs/2503.15191" target="_blank" class="paper-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3.0.032L6.5 12h-1a1.5 1.5 0 0 1-3-.032V9H1v.938a1.5 1.5 0 0 1-1-1.357V6a2 2 0 0 1 2-2h.938a8.5 8.5 0 0 1 1.556-3.111A1 1 0 0 1 4.5 3Z"/>
+              </svg>
+              arXiv
+            </a>
+          </div>
         </div>
         
         <!-- Published Paper 2 -->
@@ -1360,6 +1502,14 @@
           <div class="paper-keywords">
             <span class="paper-keyword">AI Evaluation</span>
             <span class="paper-keyword">LLM</span>
+          </div>
+          <div class="paper-links">
+            <a href="https://arxiv.org/abs/2501.14249" target="_blank" class="paper-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3.0.032L6.5 12h-1a1.5 1.5 0 0 1-3-.032V9H1v.938a1.5 1.5 0 0 1-1-1.357V6a2 2 0 0 1 2-2h.938a8.5 8.5 0 0 1 1.556-3.111A1 1 0 0 1 4.5 3Z"/>
+              </svg>
+              arXiv
+            </a>
           </div>
         </div>
       </div>
@@ -1380,6 +1530,14 @@
             <span class="paper-keyword">LLM Security</span>
             <span class="paper-keyword">Jailbreak</span>
             <span class="paper-keyword">Red Teaming</span>
+          </div>
+          <div class="paper-links">
+            <a href="https://arxiv.org/abs/2503.04856" target="_blank" class="paper-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3.0.032L6.5 12h-1a1.5 1.5 0 0 1-3-.032V9H1v.938a1.5 1.5 0 0 1-1-1.357V6a2 2 0 0 1 2-2h.938a8.5 8.5 0 0 1 1.556-3.111A1 1 0 0 1 4.5 3Z"/>
+              </svg>
+              arXiv
+            </a>
           </div>
         </div>
         
@@ -1432,7 +1590,7 @@
       <div class="awards-grid">
         <!-- Gold Award -->
         <div class="award-card gold">
-          <div class="award-icon">🥇</div>
+          <div class="award-icon pulse-animation">🥇</div>
           <div class="award-content">
             <h3 class="award-title content-en">Gold Award (4th UNIST-KAIST-POSTECH Data Science Competition)</h3>
             <h3 class="award-title content-ko">금상 (제4회 UNIST-KAIST-POSTECH 데이터사이언스 경진대회)</h3>
@@ -1445,7 +1603,7 @@
         
         <!-- CoE Leadership Award -->
         <div class="award-card">
-          <div class="award-icon">🏆</div>
+          <div class="award-icon pulse-animation">🏆</div>
           <div class="award-content">
             <h3 class="award-title">CoE Leadership – KAIST College of Engineering</h3>
             <p class="award-detail content-en">Mar. 2025</p>
@@ -1457,7 +1615,7 @@
         
         <!-- Excellence Award (Generative AI) -->
         <div class="award-card">
-          <div class="award-icon">🥈</div>
+          <div class="award-icon pulse-animation">🥈</div>
           <div class="award-content">
             <h3 class="award-title content-en">Excellence Award (Generative AI Application Contest)</h3>
             <h3 class="award-title content-ko">우수상 (생성형 AI 활용 경진대회)</h3>
@@ -1470,7 +1628,7 @@
         
         <!-- Excellence Award (Tourism Data) -->
         <div class="award-card">
-          <div class="award-icon">🥈</div>
+          <div class="award-icon pulse-animation">🥈</div>
           <div class="award-content">
             <h3 class="award-title content-en">Excellence Award (Korea Tourism Data Lab Best Practices)</h3>
             <h3 class="award-title content-ko">우수상 (한국관광데이터랩 우수사례)</h3>
@@ -1483,7 +1641,7 @@
         
         <!-- Excellence Award (Mentorship) -->
         <div class="award-card">
-          <div class="award-icon">🏅</div>
+          <div class="award-icon pulse-animation">🏅</div>
           <div class="award-content">
             <h3 class="award-title content-en">Excellence Award (Youth SW Mentorship Essay Contest)</h3>
             <h3 class="award-title content-ko">우수상 (청년 SW 멘토십 에세이 컨테스트)</h3>
@@ -1496,7 +1654,7 @@
         
         <!-- Dean's List -->
         <div class="award-card">
-          <div class="award-icon">🎓</div>
+          <div class="award-icon pulse-animation">🎓</div>
           <div class="award-content">
             <h3 class="award-title">Dean's List</h3>
             <p class="award-detail content-en">Dec. 2023</p>
@@ -1692,7 +1850,7 @@
       </div>
       
       <div style="max-width: 600px; margin: 0 auto;">
-        <form class="contact-form" id="contactForm" onsubmit="return false;">
+        <form class="contact-form" id="contactForm" onsubmit="return submitContactForm(event)">
           <div class="form-group">
             <label for="name" class="content-en">Name</label>
             <label for="name" class="content-ko">이름</label>
@@ -1717,7 +1875,7 @@
             <textarea id="message" rows="5" required></textarea>
           </div>
           
-          <button type="submit" class="submit-btn">
+          <button type="submit" class="submit-btn hover-lift">
             <span class="content-en">Send Message</span>
             <span class="content-ko">메시지 보내기</span>
           </button>
@@ -1734,6 +1892,23 @@
   <!-- 푸터 -->
   <footer class="footer">
     <div class="container">
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/hyunjun1121" target="_blank" class="social-link hover-lift">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+          </svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=KjwPYpoAAAAJ&hl=ko" target="_blank" class="social-link hover-lift">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/hyunjun1121" target="_blank" class="social-link hover-lift">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+      </div>
       <p>© 2025 Hyunjun Kim. All Rights Reserved.</p>
       <p>hyunjun1121@kaist.ac.kr | +82 010-9417-1845</p>
     </div>
@@ -1750,6 +1925,62 @@
   </button>
   
   <script>
+    // 이메일 서비스 초기화 (EmailJS)
+    function initEmailJS() {
+      if (typeof emailjs !== 'undefined') {
+        // 여기에 실제 EmailJS 서비스 ID 추가
+        emailjs.init("YOUR_EMAILJS_USER_ID");
+      }
+    }
+    
+    // 연락 폼 제출 처리
+    function submitContactForm(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // 이메일 전송 로직
+      // EmailJS 사용 예시 (실제 구현 시 서비스 ID와 템플릿 ID 설정 필요)
+      if (typeof emailjs !== 'undefined') {
+        const templateParams = {
+          to_email: "mnb9227@gmail.com",
+          from_name: name,
+          from_email: email,
+          subject: subject,
+          message: message
+        };
+        
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+          .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showFormSuccess();
+          }, function(error) {
+            console.log('FAILED...', error);
+            alert('Message failed to send. Please try again or contact directly via email.');
+          });
+      } else {
+        // EmailJS가 없는 경우 성공 메시지만 표시 (데모용)
+        console.log({name, email, subject, message});
+        console.log("Form would send email to: mnb9227@gmail.com");
+        showFormSuccess();
+      }
+      
+      return false;
+    }
+    
+    function showFormSuccess() {
+      const formSuccess = document.getElementById('formSuccess');
+      formSuccess.style.display = 'block';
+      document.getElementById('contactForm').reset();
+      
+      setTimeout(() => {
+        formSuccess.style.display = 'none';
+      }, 5000);
+    }
+    
     // 언어 전환 기능
     document.addEventListener('DOMContentLoaded', function() {
       const languageBtns = document.querySelectorAll('.language-btn');
@@ -1858,53 +2089,145 @@
       window.addEventListener('scroll', updateActiveSection);
       updateActiveSection(); // 초기화
       
-      // 애니메이션 처리
-      setTimeout(() => {
-        document.querySelectorAll('.expertise-tag').forEach((tag, index) => {
-          setTimeout(() => {
-            tag.classList.add('animated');
-          }, 100 * index);
-        });
-      }, 500);
-      
-      // 스크롤 애니메이션
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-            
-            // 스킬 태그 애니메이션
-            if (entry.target.classList.contains('skills-category')) {
-              const skillTags = entry.target.querySelectorAll('.skill-tag');
-              skillTags.forEach((tag, index) => {
-                setTimeout(() => {
-                  tag.classList.add('animated');
-                }, 50 * index);
-              });
-            }
+      // GSAP 애니메이션 (추가)
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // ScrollTrigger 플러그인 등록
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // 전문성 태그 시퀀스 애니메이션
+        const expertiseTags = document.querySelectorAll('.expertise-tag');
+        gsap.fromTo(expertiseTags, 
+          { opacity: 0, y: 30 }, 
+          { 
+            opacity: 1, 
+            y: 0, 
+            stagger: 0.1, 
+            duration: 0.6, 
+            ease: "power2.out",
+            delay: 0.5
           }
+        );
+        
+        // 타임라인 애니메이션
+        gsap.utils.toArray('.timeline-node').forEach(node => {
+          gsap.fromTo(node, 
+            { opacity: 0, x: -50 }, 
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: node,
+                start: "top bottom-=100px",
+                toggleActions: "play none none none"
+              }
+            }
+          );
         });
-      }, { threshold: 0.2 });
-      
-      // 타임라인 노드 관찰
-      document.querySelectorAll('.timeline-node').forEach(item => {
-        observer.observe(item);
-      });
-      
-      // 논문 카드 관찰
-      document.querySelectorAll('.paper-card').forEach(item => {
-        observer.observe(item);
-      });
-      
-      // 수상 카드 관찰
-      document.querySelectorAll('.award-card').forEach(item => {
-        observer.observe(item);
-      });
-      
-      // 스킬 카테고리 관찰
-      document.querySelectorAll('.skills-category').forEach(item => {
-        observer.observe(item);
-      });
+        
+        // 논문 카드 애니메이션
+        gsap.utils.toArray('.paper-card').forEach(card => {
+          gsap.fromTo(card, 
+            { opacity: 0, y: 30, scale: 0.95 }, 
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom-=50px",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        });
+        
+        // 수상 카드 애니메이션
+        gsap.utils.toArray('.award-card').forEach(card => {
+          gsap.fromTo(card, 
+            { opacity: 0, y: 30 }, 
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom-=50px",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        });
+        
+        // 스킬 태그 애니메이션
+        document.querySelectorAll('.skills-category').forEach(category => {
+          const skillTags = category.querySelectorAll('.skill-tag');
+          
+          gsap.fromTo(skillTags, 
+            { opacity: 0, y: 20 }, 
+            {
+              opacity: 1,
+              y: 0,
+              stagger: 0.05,
+              duration: 0.4,
+              scrollTrigger: {
+                trigger: category,
+                start: "top bottom-=100px",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        });
+      } else {
+        // GSAP이 없는 경우 기본 애니메이션 적용
+        setTimeout(() => {
+          document.querySelectorAll('.expertise-tag').forEach((tag, index) => {
+            setTimeout(() => {
+              tag.classList.add('animated');
+            }, 100 * index);
+          });
+        }, 500);
+        
+        // 스크롤 애니메이션
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animated');
+              
+              // 스킬 태그 애니메이션
+              if (entry.target.classList.contains('skills-category')) {
+                const skillTags = entry.target.querySelectorAll('.skill-tag');
+                skillTags.forEach((tag, index) => {
+                  setTimeout(() => {
+                    tag.classList.add('animated');
+                  }, 50 * index);
+                });
+              }
+            }
+          });
+        }, { threshold: 0.2 });
+        
+        // 타임라인 노드 관찰
+        document.querySelectorAll('.timeline-node').forEach(item => {
+          observer.observe(item);
+        });
+        
+        // 논문 카드 관찰
+        document.querySelectorAll('.paper-card').forEach(item => {
+          observer.observe(item);
+        });
+        
+        // 수상 카드 관찰
+        document.querySelectorAll('.award-card').forEach(item => {
+          observer.observe(item);
+        });
+        
+        // 스킬 카테고리 관찰
+        document.querySelectorAll('.skills-category').forEach(item => {
+          observer.observe(item);
+        });
+      }
       
       // 다크 모드 감지 함수
       const isDarkMode = () => document.documentElement.getAttribute('data-theme') === 'dark';
@@ -1982,7 +2305,11 @@
               }
             },
             responsive: true,
-            maintainAspectRatio: true
+            maintainAspectRatio: true,
+            animation: {
+              duration: 2000,
+              easing: 'easeOutQuart'
+            }
           }
         });
         
@@ -2039,47 +2366,49 @@
             if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
               card.classList.remove('hidden');
               
-              // 애니메이션 효과
-              setTimeout(() => {
-                card.style.transform = 'translateY(0)';
-                card.style.opacity = '1';
-              }, 50);
+              if (typeof gsap !== 'undefined') {
+                gsap.to(card, {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.out"
+                });
+              } else {
+                // 기본 애니메이션 효과
+                setTimeout(() => {
+                  card.style.transform = 'translateY(0)';
+                  card.style.opacity = '1';
+                }, 50);
+              }
             } else {
               card.classList.add('hidden');
-              card.style.transform = 'translateY(20px)';
-              card.style.opacity = '0';
+              
+              if (typeof gsap !== 'undefined') {
+                gsap.to(card, {
+                  opacity: 0,
+                  y: 20,
+                  scale: 0.95,
+                  duration: 0.3,
+                  ease: "power2.in"
+                });
+              } else {
+                card.style.transform = 'translateY(20px)';
+                card.style.opacity = '0';
+              }
             }
           });
         });
       });
       
-      // 간단한 폼 제출 처리
-      const contactForm = document.getElementById('contactForm');
-      const formSuccess = document.getElementById('formSuccess');
+      // 이메일 서비스 초기화
+      initEmailJS();
       
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // 여기서 실제 폼 제출 로직을 구현하세요 (예: fetch API로 서버에 전송)
-        // 예시: 폼 입력값 가져오기
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        console.log({name, email, subject, message});
-        
-        // 성공 메시지 표시 (실제 구현에서는 서버 응답 후 표시)
-        formSuccess.style.display = 'block';
-        
-        // 폼 초기화
-        contactForm.reset();
-        
-        // 일정 시간 후 성공 메시지 숨기기
-        setTimeout(() => {
-          formSuccess.style.display = 'none';
-        }, 5000);
-      });
+      // 3D 효과 (three.js가 있는 경우)
+      if (typeof THREE !== 'undefined') {
+        // 3D 배경 효과 구현 가능
+        console.log("THREE.js available for 3D effects");
+      }
     });
   </script>
 </body>
